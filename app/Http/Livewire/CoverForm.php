@@ -20,11 +20,6 @@ class CoverForm extends Component
     public $image = false;
     public $albumImage;
     private $trackNames;
-    public $colours = [
-        '#ffffff',
-        '#999999',
-        '#000000'
-    ];
 
     public function updatedFile($file)
     {
@@ -46,28 +41,11 @@ class CoverForm extends Component
         $this->tracks = implode("\n", $trackNames);
     }
 
-    public function updatedAlbumImage()
-    {
-        // initiate with image
-        $palette = new \BrianMcdo\ImagePalette\ImagePalette( $this->albumImage );
-
-        $colors = $palette->getColors(2);
-
-        $colours = [];
-        foreach ($colors as $color) {
-            $colours[] = $color->toHexString();
-        }
-
-        $this->colours = $colours;
-
-        $this->submitForm();
-    }
-
     public function submitForm()
     {
         // Grab all the values.
 
-        $img = Image::canvas(996, 927, $this->colours[0])->insert(public_path('assets/images/template.png'));
+        $img = Image::canvas(996, 927, '#121212')->insert(public_path('assets/images/template.png'));
 
         $img->text($this->title, 103, 110, function($font) {
             $this->spineFont($font);
@@ -85,7 +63,7 @@ class CoverForm extends Component
         });
 
         $img->line(103, 200, 892, 200, function ($draw) {
-            $draw->color($this->colours[1]);
+            $draw->color('#ffffff');
         });
 
         $img->text($this->tracks, 103, 220, function($font) {
@@ -119,7 +97,7 @@ class CoverForm extends Component
     {
         $font->file(public_path('assets/fonts/Inconsolata.ttf'));
         $font->size(24);
-        $font->color($this->colours[1]);
+        $font->color('#ffffff');
         $font->align('left');
         $font->valign('top');
     }
