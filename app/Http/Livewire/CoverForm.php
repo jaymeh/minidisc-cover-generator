@@ -45,13 +45,13 @@ class CoverForm extends Component
     {
         // Grab all the values.
 
-        $img = Image::canvas(996, 927, '#121212')->insert(public_path('assets/images/template.png'));
+        $img = Image::canvas(996, 927)->insert(public_path('assets/images/template.png'));
 
-        $img->text($this->title, 103, 110, function($font) {
+        $img->text($this->title, 103, 104, function($font) {
             $this->spineFont($font);
         });
 
-        $img->text($this->year, 892, 110, function($font) {
+        $img->text($this->year, 892, 104, function($font) {
             $this->spineFont($font);
             $font->align('right');
         });
@@ -68,6 +68,7 @@ class CoverForm extends Component
 
         $img->text($this->tracks, 103, 220, function($font) {
             $this->spineFont($font);
+            $font->size(24);
         });
 
         $path = '/assets/exports/' . uniqid() . '.jpg';
@@ -96,8 +97,8 @@ class CoverForm extends Component
     public function spineFont(&$font)
     {
         $font->file(public_path('assets/fonts/Inconsolata.ttf'));
-        $font->size(24);
-        $font->color('#ffffff');
+        $font->size(36);
+        $font->color('#000000');
         $font->align('left');
         $font->valign('top');
     }
